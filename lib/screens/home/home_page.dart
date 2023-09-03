@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text('Good Morning',
                   textAlign: TextAlign.center, style: textTheme.headlineMedium),
@@ -41,21 +41,101 @@ class _HomePageState extends State<HomePage> {
                   textAlign: TextAlign.center,
                   style: textTheme.headlineSmall!.copyWith(
                       fontWeight: FontWeight.bold, color: Colors.black87)),
-              Spacer(),
-              _buildQuizView(),
-              Spacer(),
-              _buildButtonPanel(),
-              SizedBox(height: 16.0),
+
+              Container(
+                //width:300,height: 20,color: Colors.tealAccent[400],
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 50.0, vertical: 50.0),
+                margin: const EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(
+                        color: Colors.black, style: BorderStyle.solid),
+                    borderRadius: BorderRadius.circular(10.0)
+                ),
+                 
+                  child:Column(
+                      children: [
+                        Text('Question 1 of 30'),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 50.0, vertical: 10.0),
+                          margin: const EdgeInsets.all(16.0),
+                          decoration: BoxDecoration(
+                              color: Colors.teal[400],
+                              border: Border.all(
+                                  color: Colors.black, style: BorderStyle.solid),
+                              borderRadius: BorderRadius.circular(30.0)),
+                          child: Text('What is the capital of France?',style: TextStyle(color: Colors.white)),
+                        ),
+                        _buildQuizView('A','Berlin'),
+                        _buildQuizView('B','LonDon'),
+                        _buildQuizView('C','Madrid'),
+                        _buildQuizView('D','Paris'),
+
+                      ]
+                  )
+
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                        child: buildButtom('<')),
+                    SizedBox(width: 30.0),
+                    Expanded(
+                        child: buildButtom('>')),
+
+                  ],
+                ),
+              ),
+              //Spacer(),
+              //_buildQuizView('B','London'),
+              //Spacer(),
+              //_buildButtonPanel(),
+              //SizedBox(height: 16.0),
+
             ],
+
           ),
         ),
       ),
     );
   }
 
-  _buildQuizView() {
-    // TODO: build UI
-    return Center(child: Text('TODO: build UI'));
+  Container buildButtom(String name) {
+    return Container(
+                  decoration: BoxDecoration(
+                    color: Colors.red[200],
+                    border: Border.all(
+                        color: Colors.black, style: BorderStyle.solid),
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(name),
+                    ],
+                  ),
+                );
+  }
+  Padding _buildQuizView(String abcd , String text) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Container(
+        decoration: BoxDecoration(border: Border.all(color: Colors.black,style: BorderStyle.solid),borderRadius: BorderRadius.circular(20.0)),
+        child:Row(
+          children: [
+            Container(
+              decoration: BoxDecoration(border: Border.all(color: Colors.black,style: BorderStyle.solid),borderRadius: BorderRadius.circular(20.0)),
+              child: Text(abcd),
+            ),
+            Text(text),
+          ],
+        ),
+      ),
+    );
   }
 
   _buildButtonPanel() {
